@@ -1,33 +1,35 @@
-from flask import Flask
-from markupsafe import escape
-import pymongo
+from flask import Flask, request, render_template
+from flask_pymongo import PyMongo
+#import pymongo
+
+#myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+#mydb = myclient['testdatabase']
+#mycol = mydb["test"]
 
 app = Flask(__name__)
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+app.config["MONGO_URI"] = "mongodb://localhost:27017/myDatabase"
+mongo = PyMongo(app)
 
-mydb = myclient["mydatabase"]
-mycol = mydb["Decks"]
-
-mylist = [
-      {"name": "amulet yitan", "format": "modern"},
-      {"name": "8-cast", "format": "legacy"},
-      {"name": "death and taxes", "format": "legacy"},
-]
-
-x = mycol.insert_many(mylist)
 
 @app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+def home_page():
+    online_users = mongo.db.users.find({"online": True})
+    return render_template("index.html",
+        online_users=online_users)
+#
+#@app.route("/")
+#def hello_world():
+#    return "<p>Hello, World!</p>"
+#
 
-@app.route("/<name>")
-def hello(name):
-        return f"Hello, {escape(name)}!"
+@app.get('/login')
+def login_get():
+     return 'get login'
 
-@app.route('/projects/')
-def projects():
-      return 'The project page'
+@app.post('/login')
+def login_post():
+     return 'post login'
 
 @app.route('/decks/')
 def decks():
-      return "this will eventually be a list of decks"
+      return
