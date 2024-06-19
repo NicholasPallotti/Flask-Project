@@ -7,6 +7,56 @@
    <link rel="stylesheet" href="{{url_for('static', filename='../static/css/styles.css')}}">
 </head>
 <body>
-    
+    <h1> MTG Decks</h1>
+    <div class="deck_name">
+        <form method="POST">
+            <p>
+                <label for="deck_name">Deck Name</label>
+            </p>
+            <p>
+                <input type="text" name="deck_name" placeholder="deck name">
+            </p>
+
+            <p>
+                <label for="format">Format</label>
+            </p>
+            <p>
+                <input id="format-0"
+                name="format"
+                required
+                type="radio"
+                value="modern">
+                <label for="format-0">Modern</label>
+            </p>
+            <p>
+                <input id="format-0"
+                name="format"
+                required
+                type="radio"
+                value="legacy">
+                <label for="degree-0">Legacy</label>
+            </p>
+            <p>
+                <button type="submit">Submit</button>
+            </p>
+        </form>
+
+        {% for deck in decks %}
+            <div class="decks">
+                <p>
+                    {{decks['name'] }}
+                    <i> {{decks['format'] }}</i>
+                </p>
+
+                <form method="POST"
+                    action="{{ url_for('delete', id=decks['_id']) }}">
+                <input
+                    type="submit"
+                    value="delete deck"
+                    onclick="return confirm('Are you sure you want to delete this deck?')" />
+            </form>
+            </div>
+            {% endfor %}
+    </div>
 </body>
 </html>
