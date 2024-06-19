@@ -1,0 +1,46 @@
+button{
+    background-color: rgb(130, 190, 245);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover{
+    background-color: rgb(38, 127, 211);
+}
+
+form{
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+p1{
+    background-color:  #ccc5c5;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+body, h1 {
+    padding: 0;
+    margin: 0;
+    
+}
+
+input[type="radio"]{
+    margin-right: 5px;
+}
+
+.deck{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}

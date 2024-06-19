@@ -43,10 +43,10 @@
 
         {% for deck in decks %}
             <div class="deck">
-                <p>
-                    {{deck['name'] }}
+                <p1>
+                    <b>{{deck['name'] }} </b>
                     <i> {{deck['format'] }}</i>
-                </p>
+                </p1>
 
                 <form method="POST"
                     action="{{ url_for('delete', id=deck['_id']) }}">
